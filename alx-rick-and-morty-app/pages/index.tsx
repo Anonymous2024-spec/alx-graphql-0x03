@@ -1,12 +1,10 @@
-import ErrorBoundary from "@/components/ErrorBoundary";
 import ErrorProneComponent from "@/components/ErrorProneComponent";
 
-const Home: React.FC = () => {
+export default function Home() {
   return (
-    <ErrorBoundary>
+    <div>
+      <h1>Home Page</h1>
       <ErrorProneComponent />
-    </ErrorBoundary>
+    </div>
   );
-};
-
-export default Home;
+}

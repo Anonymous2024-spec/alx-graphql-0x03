@@ -15,13 +15,18 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, State> {
     this.state = { hasError: false };
   }
 
-  static getDerivedStateFromError(error: Error): State {
+  static getDerivedStateFromError(_: Error): State {
     return { hasError: true };
   }
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+    // Log to console (local debugging)
+    console.error("ErrorBoundary caught an error:", error, errorInfo);
+
+    // Send error to Sentry
     Sentry.captureException(error, { extra: errorInfo });
   }
+
   render() {
     if (this.state.hasError) {
       return (
